@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Logout {% endblock title %}
+
+{% block style %}
+<style>
+    .login-style {
+        width:500px;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container">
+    <p>You have been logout. You can <a class="" href="{% url 'login' %}">Login Here</a>.</p>
+</div>
+{% endblock body %}

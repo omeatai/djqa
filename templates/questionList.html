@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Question List{% endblock title %}
+
+{% block style%}
+    <style>
+        .link-style {
+            text-decoration:none;
+            color: #00798C;
+        }
+        .link-style:hover {
+            text-decoration:none;
+            color:gray;
+        }
+    </style>
+{% endblock style%}
+
+{% block body%}
+<div class="container">
+{% for question in question_list %}
+    <div class="card mt-3 shadow">
+        <div class="card-body">
+            <h5 class="card-title"><a class="link-style" href="{% url 'question_details' question.slug %}">{{question.title}}</a></h5>
+            <p class="card-text">{{question.body}}</p>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col col-md-auto">
+                    Posted By: {{question.author.username}}
+                </div>
+                <div class="col col-md-auto">
+                    Answers: {{question.answers.count}}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% if not question_list%}
+<div class="card mt-3 shadow">
+    <div class="card-body">
+        <h5 class="card-title"><a class="link-style" href="">Sorry, No records were found.</a></h5>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <a href="{% url 'question_list'%}"><button class="btn btn-success">Return</button></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+</div>
+{% endblock body%}
